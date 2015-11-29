@@ -13,7 +13,7 @@ and display all colors in and their frequency.
 
 void setup() {
       size(300,150);   
-      smooth();
+      
 }
 String state = "begin"; // begin -> image -> col_display
 PImage img;
