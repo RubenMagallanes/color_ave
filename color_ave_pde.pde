@@ -12,7 +12,7 @@ and display all colors in and their frequency.
 
 
 void setup() {
-      size(300,150);   
+      size(300,150);   //always should be the first line
       smooth();
 }
 String state = "begin"; // begin -> image -> col_display
@@ -34,6 +34,9 @@ void mouseClicked(){
             if (img == null){
             img = loadImage("image.png");
             }
+            //image loaded, should not be null
+            print (img == null);
+            
       }      
 
 }
