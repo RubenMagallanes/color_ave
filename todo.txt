@@ -5,3 +5,5 @@
 	-filechooser UI element 
 	
 -opens new window for each picture loaded in, forks a process for ech
+-add readme.md
+
