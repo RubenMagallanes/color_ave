@@ -28,6 +28,9 @@ void draw(){
       
       } else if (state.equals("image")){
             image(img,0,0);
+      } else if (state.equals("col_display")){
+            //display smaller version of image, with most frequent x colors 
+            //down side/ across bottom / overlaid across img
       }
 }
 
@@ -41,10 +44,13 @@ void mouseClicked(){
                   if (img != null)
                         println("image.png loaded");
             }
-            //image loaded, should not be null
-            assert (img != null);
+            assert(img != null);
             
             state = "image";
-      }      
+      } else if (state.equals ("image")){
+            println("begin processing image color frequencys");
+      
+            state = "col_display";
+      }
 
 }
