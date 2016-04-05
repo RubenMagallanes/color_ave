@@ -32,6 +32,8 @@ void draw(){
       } else if (state.equals("col_display")){
             //display smaller version of image, with most frequent x colors 
             //down side/ across bottom / overlaid across img
+            image(img,0,0);//change size so it fits better?
+            
       }
 }
 
@@ -50,8 +52,14 @@ void mouseClicked(){
             state = "image";
       } else if (state.equals ("image")){
             println("begin processing image color frequencys");
-            process_image(img);
-            state = "col_display";
+            process_image(img); // process img, extract cols
+            //sort array
+            state = "col_display"; // then change state to redraw display
+            println("size of colors array: "+colors.size());  
+            println(" color frequencys:");
+            for (int i = 0; i< colors.size(); i++){
+                  print(colors.get(i).frequency() + " :: ");
+            }
       }
 
 }
@@ -77,9 +85,11 @@ private color_freq_pair get_relevant_pair(color c){
 */
 private void process_image(PImage img){
       int dimension = img.width * img.height;
+      print("pixels to process: "+dimension);
       img.loadPixels();
       for (int i= 0; i< dimension; i++){
             color_freq_pair pair = get_relevant_pair(img.pixels[i]);
             pair.increment_frequency();
+            if (i %1000 == 0) println(i + "/" + dimension);
       }
 }
