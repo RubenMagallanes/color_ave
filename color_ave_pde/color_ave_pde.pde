@@ -9,16 +9,17 @@ and display all colors in and their frequency.
 // change canvas to match / scale 
 
 //allow sleection of pixels
-
+import java.util.*;
 
 void setup() {
 
       size(1080,610);   //always should be the first line
       smooth();
-
+      colors = new ArrayList<color_freq_pair>();
 }
 String state = "begin"; // begin -> image -> col_display
 PImage img;
+ArrayList<color_freq_pair> colors; 
 
 void draw(){
       if (state.equals("begin")){
@@ -32,7 +33,7 @@ void draw(){
             //display smaller version of image, with most frequent x colors 
             //down side/ across bottom / overlaid across img
       }
-}
+}//pixels[y*width+x]
 
 void mouseClicked(){
       if (state.equals("begin")){
