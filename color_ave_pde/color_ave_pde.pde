@@ -13,7 +13,7 @@ and display all colors in and their frequency.
 
 void setup() {
 
-      size(300,150);   //always should be the first line
+      size(1080,610);   //always should be the first line
       smooth();
 
 }
@@ -26,19 +26,25 @@ void draw(){
             fill (10,80,150);
             text("click to load image.jpg or image.png \nin the data directory", 10, 30); 
       
+      } else if (state.equals("image")){
+            image(img,0,0);
       }
 }
 
 void mouseClicked(){
       if (state.equals("begin")){
-            
             img = loadImage("image.jpg");
+            if (img != null)
+                  println("image.jpg loaded");
             if (img == null){
-            img = loadImage("image.png");
+                  img = loadImage("image.png");
+                  if (img != null)
+                        println("image.png loaded");
             }
             //image loaded, should not be null
-            print (img == null);
+            assert (img != null);
             
+            state = "image";
       }      
 
 }
