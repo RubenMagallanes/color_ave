@@ -3,10 +3,12 @@ public class color_freq_pair implements Comparable<color_freq_pair>{
       private int freq;
       
       public color_freq_pair(color c){
-            col = c;
-            freq = 0; 
+            this(c,0);
       }
-      
+      public color_freq_pair(color c, int f){
+            col = c;
+            freq = f;
+      }
       public void increment_frequency(){
             freq++;
       }
