@@ -7,3 +7,4 @@
 -opens new window for each picture loaded in, forks a process for ech
 -add readme.md
 
+-make all methods side effect free. eg. process_image

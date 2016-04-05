@@ -18,7 +18,7 @@ void setup() {
       colors = new ArrayList<color_freq_pair>();
 }
 String state = "begin"; // begin -> image -> col_display
-PImage img;
+PImage img; // access pixels by px array of color pixels[y*width+x]
 ArrayList<color_freq_pair> colors; 
 
 void draw(){
@@ -33,7 +33,7 @@ void draw(){
             //display smaller version of image, with most frequent x colors 
             //down side/ across bottom / overlaid across img
       }
-}//pixels[y*width+x]
+}
 
 void mouseClicked(){
       if (state.equals("begin")){
@@ -50,8 +50,36 @@ void mouseClicked(){
             state = "image";
       } else if (state.equals ("image")){
             println("begin processing image color frequencys");
-      
+            process_image(img);
             state = "col_display";
       }
 
+}
+/**
+      returns the color_freq_pair for the supplied color.
+      either returns one already in the list, or creates a 
+      new one and adds it to the list then returns
+*/
+private color_freq_pair get_relevant_pair(color c){
+      for (color_freq_pair col: colors){
+            if (col.get_color() == c) return col;
+      }
+      color_freq_pair new_pair = new color_freq_pair(c);
+      colors.add(new_pair);
+      return new_pair;
+}  
+/**
+      processes the supplied image and counts colors. 
+      
+      side effect: after this method executes, 'colors' list 
+      will be populated with all colors in the image, and sorted 
+      based on frequency. 
+*/
+private void process_image(PImage img){
+      int dimension = img.width * img.height;
+      img.loadPixels();
+      for (int i= 0; i< dimension; i++){
+            color_freq_pair pair = get_relevant_pair(img.pixels[i]);
+            pair.increment_frequency();
+      }
 }
