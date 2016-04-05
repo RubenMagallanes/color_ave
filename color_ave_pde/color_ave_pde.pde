@@ -12,7 +12,7 @@ and display all colors in and their frequency.
 
 
 void setup() {
-<<<<<<< HEAD:color_ave_pde.pde
+
       size(300,150);   //always should be the first line
       smooth();
 
