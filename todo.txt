@@ -1,3 +1,4 @@
+
 -programs works just using clicks, loading image.jpg from data dir
 -allow user to select area using mouse using Pimg.get(x,y,w,h)
 -allow user to select image either:
@@ -8,3 +9,4 @@
 -add readme.md
 
 -make all methods side effect free. eg. process_image
+-implement UI progress bar
