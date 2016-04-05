@@ -4,8 +4,9 @@
 -allow user to select image either:
 	-typing filename into main window
 	-filechooser UI element 
-	
+	-drag in
 -opens new window for each picture loaded in, forks a process for ech
+	-shouldnt need this as isnt too slow anymore
 -add readme.md
 
 -make all methods side effect free. eg. process_image
