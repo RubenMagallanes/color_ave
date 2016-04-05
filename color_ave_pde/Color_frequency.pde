@@ -1,4 +1,4 @@
-public class color_freq_pair{
+public class color_freq_pair implements Comparable<color_freq_pair>{
       private color col; // remeber color is wrapper for 32 bit int
       private int freq;
       
@@ -24,5 +24,8 @@ public class color_freq_pair{
             if (other.frequency() > this.freq)
                   return other;
             return this;
+      }
+      public int compareTo(color_freq_pair pair1){
+            return new Integer(pair1.frequency()).compareTo(this.freq);
       }
 }
