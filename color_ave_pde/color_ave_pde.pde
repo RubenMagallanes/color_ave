@@ -48,9 +48,10 @@ void mouseClicked(){
             
             state = "image";
       } else if (state.equals ("image")){
-            //Arrays.sort(img.pixels); // sorts colors from lowest to highest
+            img.loadPixels(); // prep the image for direect pixel manip.
+            Arrays.sort(img.pixels); // sorts colors from lowest to highest 
             
-            process_image(img); 
+            process_image(img); // populate colors arraylist with color frequencies
             Collections.sort(colors);
             int pxl=0;
             for (int i = 0; i< colors.size(); i++){
@@ -62,7 +63,7 @@ void mouseClicked(){
                         pxl++;
                   }
             }
-            img.updatePixels();
+            img.updatePixels(); // tell pic to update based on pixls
             state = "col_display";
       }
 
@@ -71,7 +72,7 @@ void mouseClicked(){
       returns the color_freq_pair for the supplied color.
       either returns one already in the'colors' list, or creates 
       a new one and adds it to the list then returns
-*/
+*//*
 private color_freq_pair get_relevant_pair(color c){
       for (color_freq_pair col: colors){
             if (col.get_color() == c) return col;
@@ -79,7 +80,7 @@ private color_freq_pair get_relevant_pair(color c){
       color_freq_pair new_pair = new color_freq_pair(c);
       colors.add(new_pair);
       return new_pair;
-}  
+}  */ // shouldnt need if it's already sorrted
 /**
       processes the supplied image and counts colors. 
       
@@ -89,11 +90,15 @@ private color_freq_pair get_relevant_pair(color c){
 */
 private void process_image(PImage img){
       int dimension = img.width * img.height;
-      print("pixels to process: "+dimension);
-      img.loadPixels();
-      for (int i= 0; i< dimension; i++){
-            color_freq_pair pair = get_relevant_pair(img.pixels[i]);
-            pair.increment_frequency();
+      color previous = img.pixels[0];
+      int run = 0; 
+      for (int i= 1; i< dimension; i++){
+            run++;
+            if (img.pixels[i]!= previous){
+                  colors.add(new color_freq_pair(previous, run));
+                  run = 0; 
+            }
+            previous = img.pixels[i];
             if (i %1000 == 0) println(i + "/" + dimension+ "-> %" + ((float)i/dimension)*100);
       }
 }
