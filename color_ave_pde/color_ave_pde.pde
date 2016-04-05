@@ -53,13 +53,19 @@ void mouseClicked(){
       } else if (state.equals ("image")){
             println("begin processing image color frequencys");
             process_image(img); // process img, extract cols
-            //sort array
-            state = "col_display"; // then change state to redraw display
-            println("size of colors array: "+colors.size());  
-            println(" color frequencys:");
+            Collections.sort(colors);
+            int pxl=0;
             for (int i = 0; i< colors.size(); i++){
-                  print(colors.get(i).frequency() + " :: ");
+                  //print(colors.get(i).frequency() + " :: ");
+                  //set(x, y, #000000) using pixels[] is pixels[y*width+x] = #000000. 
+                  color_freq_pair curr_pair = colors.get(i);
+                  int run = curr_pair.frequency();
+                  for (int j=0; j< run; j++) {
+                        img.pixels[pxl] = curr_pair.get_color();
+                  }
             }
+            img.updatePixels();
+            
       }
 
 }
