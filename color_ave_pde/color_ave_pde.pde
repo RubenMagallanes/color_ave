@@ -44,9 +44,9 @@ void mouseClicked(){
                   if (img != null)
                         println("image.png loaded");
             }
-            assert(img != null);
             
-            state = "image";
+            if (img != null)
+                  state = "image";
       } else if (state.equals ("image")){
             img.loadPixels(); // prep the image for direect pixel manip.
             Arrays.sort(img.pixels); // sorts colors from lowest to highest 
